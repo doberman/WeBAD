@@ -135,14 +135,6 @@ document.addEventListener("speechstop", (event) => {
     // console.log(' ')
   }
 
-  document.querySelector("#recordingcell").style.color = "white";
-  document.querySelector("#recordingcell").style.background = "black";
-  document.querySelector("#recording").style.color = "white";
-  document.querySelector("#recording").style.background = "black";
-  document.querySelector(
-    "#recording"
-  ).textContent = `stop. len: ${duration} msecs`;
-
   stopRecording();
 });
 

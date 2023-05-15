@@ -80,7 +80,7 @@ elapsed time in milliseconds before the speechstart event.
 prerecordstart
 
 */
-const PRERECORDSTART_MSECS = 600;
+const PRERECORDSTART_MSECS = 200;
 
 /*
  
@@ -108,7 +108,7 @@ the event 'abortrecording' is generated.
                               |
                        MIN_SIGNAL_DURATION  
 */
-const MIN_SIGNAL_DURATION = 2000;
+const MIN_SIGNAL_DURATION = 4000;
 
 /*
  
@@ -123,8 +123,8 @@ silence (background noise)
 mute (microphone off)
 
 */
-const VOLUME_SIGNAL = 0.04;
-const VOLUME_SILENCE = 0.0001;
+const VOLUME_SIGNAL = 0.08;
+const VOLUME_SILENCE = 0.001;
 const VOLUME_MUTE = 0.0001;
 
 /*
@@ -150,7 +150,7 @@ const DEFAULT_PARAMETERS_CONFIGURATION = {
 
   muteVolume: VOLUME_MUTE,
 
-  recordingEnabled: true,
+  recordingEnabled: false,
 
   recordingStopped: false,
 };

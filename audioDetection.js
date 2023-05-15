@@ -312,15 +312,9 @@ function audioDetection(config) {
 
     // to avoid feedback, recording could be suspended
     // when the system play audio with a loudspeakers
-    console.log(
-      config.recordingEnabled,
-      config.recordingStopped,
-      config.recordingEnabled && !config.recordingStopped
-    );
     if (config.recordingEnabled && !config.recordingStopped) {
       sampleThresholdsDecision(config.muteVolume, config.speakingMinVolume);
     } else {
-      console.log("AUDIO DETECTION STOP");
     }
 
     // recursively call this function

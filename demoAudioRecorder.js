@@ -6,7 +6,7 @@ var supportsWebm =
   MediaRecorder.isTypeSupported("audio/webm;codecs=opus");
 var mimeType = supportsWebm ? "audio/webm;codecs=opus" : "audio/mp4";
 var fileExtension = supportsWebm ? "webm" : "mp4";
-var API_TOKEN = "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";
+var API_TOKEN = "";
 
 // let audioPlay = true;
 
@@ -32,6 +32,7 @@ function audioRecorder(stream) {
 }
 
 async function onRecordingReady(e) {
+  console.log("onRecordingReady", e.type);
   //
   // listen recording (audio play)
   // just if speech is not aborted
@@ -42,16 +43,8 @@ async function onRecordingReady(e) {
   // to avoid that playback audio feedback in the mic input!
   //
 
-  console.log(DEFAULT_PARAMETERS_CONFIGURATION);
-  if (!DEFAULT_PARAMETERS_CONFIGURATION.recordingStopped) {
-    console.log("should restart");
-    suspendRecording();
-    resumeRecording();
-  } else {
-    console.log("onRecordingReady abort");
-    recorder.stop();
-    return;
-  }
+  suspendRecording();
+  resumeRecording();
 
   const blob = new Blob([e.data], { type: e.data.type });
   const formData = new FormData();
@@ -107,6 +100,7 @@ function startRecording() {
 
 function stopRecording() {
   // Stopping the recorder will eventually trigger the `dataavailable` event and we can complete the recording process
+  // console.log("stop recording!");
   recorder.stop();
   // audioPlay = true;
 }
@@ -122,7 +116,7 @@ function restartRecording() {
 
   // need otherwise I get on Chrome the error:
   // Failed to execute 'stop' on 'MediaRecorder': The MediaRecorder's state is 'inactive'.
-  console.log("restart: recordingEnabled", DEFAULT_PARAMETERS_CONFIGURATION);
+  // console.log("restart: recordingEnabled", DEFAULT_PARAMETERS_CONFIGURATION);
   if (recorder.state != "inactive") recorder.stop();
 
   // audioPlay = false;
@@ -138,20 +132,20 @@ function abortRecording() {
 function userStoppedRecording() {
   DEFAULT_PARAMETERS_CONFIGURATION.recordingStopped = true;
   DEFAULT_PARAMETERS_CONFIGURATION.recordingEnabled = false;
-  console.log(
-    "userStopped: recordingEnabled",
-    DEFAULT_PARAMETERS_CONFIGURATION
-  );
+  // console.log(
+  //   "userStopped: recordingEnabled",
+  //   DEFAULT_PARAMETERS_CONFIGURATION
+  // );
   recorder.stop();
 }
 
 function userResumedRecording() {
   DEFAULT_PARAMETERS_CONFIGURATION.recordingStopped = false;
   DEFAULT_PARAMETERS_CONFIGURATION.recordingEnabled = true;
-  console.log(
-    "userResumed: recordingEnabled",
-    DEFAULT_PARAMETERS_CONFIGURATION
-  );
+  // console.log(
+  //   "userResumed: recordingEnabled",
+  //   DEFAULT_PARAMETERS_CONFIGURATION
+  // );
   if (recorder.state != "inactive") recorder.stop();
   recorder.start();
 }
@@ -159,13 +153,13 @@ function userResumedRecording() {
 // to suspend recording when the system play audio with a loudspeaker, avoiding feedback
 function suspendRecording() {
   DEFAULT_PARAMETERS_CONFIGURATION.recordingEnabled = false;
-  console.log(
-    "suspend: recordingEnabled",
-    DEFAULT_PARAMETERS_CONFIGURATION.recordingEnabled
-  );
+  // console.log(
+  //   "suspend: recordingEnabled",
+  //   DEFAULT_PARAMETERS_CONFIGURATION.recordingEnabled
+  // );
 }
 
 function resumeRecording() {
   DEFAULT_PARAMETERS_CONFIGURATION.recordingEnabled = true;
-  console.log("resume: recordingEnabled", DEFAULT_PARAMETERS_CONFIGURATION);
+  // console.log("resume: recordingEnabled", DEFAULT_PARAMETERS_CONFIGURATION);
 }
