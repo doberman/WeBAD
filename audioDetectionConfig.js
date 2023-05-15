@@ -24,7 +24,7 @@ polling time clock in milliseconds. Is the sampling rate to run speech detection
   |   |   |   |   |   |   |   |   |   |   |   |
 
 */
-const SAMPLE_POLLING_MSECS = 50
+const SAMPLE_POLLING_MSECS = 50;
 
 /*
  
@@ -50,10 +50,9 @@ That elapsed is used also to decide if a full speech is concluded, generating ev
   speechstart                                  |                         |    speechstop 
                                                |                         |
                                  MAX_INTERSPEECH_SILENCE_MSECS    POST_SPEECH_MSECS
-*/                                                      
-const MAX_INTERSPEECH_SILENCE_MSECS = 600
-const POST_SPEECH_MSECS = MAX_INTERSPEECH_SILENCE_MSECS
-
+*/
+const MAX_INTERSPEECH_SILENCE_MSECS = 600;
+const POST_SPEECH_MSECS = MAX_INTERSPEECH_SILENCE_MSECS;
 
 /*
  
@@ -80,8 +79,8 @@ elapsed time in milliseconds before the speechstart event.
 |              
 prerecordstart
 
-*/                                                      
-const PRERECORDSTART_MSECS = 600
+*/
+const PRERECORDSTART_MSECS = 600;
 
 /*
  
@@ -109,8 +108,7 @@ the event 'abortrecording' is generated.
                               |
                        MIN_SIGNAL_DURATION  
 */
-const MIN_SIGNAL_DURATION = 400
-
+const MIN_SIGNAL_DURATION = 2000;
 
 /*
  
@@ -125,9 +123,9 @@ silence (background noise)
 mute (microphone off)
 
 */
-const VOLUME_SIGNAL = 0.02
-const VOLUME_SILENCE = 0.001
-const VOLUME_MUTE = 0.0001
+const VOLUME_SIGNAL = 0.04;
+const VOLUME_SILENCE = 0.0001;
+const VOLUME_MUTE = 0.0001;
 
 /*
  
@@ -139,22 +137,20 @@ If a signal block chain sample doesn't exceed that threshold value,
 the event 'abortrecording' is generated.
 
 */
-const MIN_AVERAGE_SIGNAL_VOLUME = 0.04
-
+const MIN_AVERAGE_SIGNAL_VOLUME = 0.06;
 
 const DEFAULT_PARAMETERS_CONFIGURATION = {
-
   timeoutMsecs: SAMPLE_POLLING_MSECS,
-  
+
   prespeechstartMsecs: PRERECORDSTART_MSECS,
-  
-  speakingMinVolume: VOLUME_SIGNAL, 
-  
+
+  speakingMinVolume: VOLUME_SIGNAL,
+
   silenceVolume: VOLUME_SILENCE,
-  
+
   muteVolume: VOLUME_MUTE,
 
-  recordingEnabled: true
+  recordingEnabled: true,
 
-}
-
+  recordingStopped: false,
+};
